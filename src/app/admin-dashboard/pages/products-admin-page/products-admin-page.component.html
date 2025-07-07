@@ -1,0 +1,39 @@
+
+<h1 class="text-2xl font-bold DarkText">Listado de productos</h1>
+<h3 class="text-lg DarkText">
+  Total de productos
+  <span class="text-blue-700 dark:text-sky-400 font-bold">{{productsResource.value()?.count}}</span>
+</h3>
+
+<div class="divider"></div>
+
+<div class="flex gap-2 items-center">
+  <app-pagination
+    [spacing]="false"
+    [pages]="productsResource.value()?.pages ?? 0"
+    [currentPage]="paginationService.currentPage()"
+  />
+
+  <select
+    class="select select-bordered w-32 mt-4 mb-10"
+    (change)="productsPerPage.set(+selectPerPage.value)"
+    #selectPerPage
+  >
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option vlaue="100">100</option>
+  </select>
+
+  <button class="btn bg-blue-600 DarkBoton text-white mt-4 mb-10  hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200" routerLink="/admin/products/new">
+    Nuevo producto
+  </button>
+
+
+</div>
+
+
+
+<!-- Listado de productos -->
+
+<product-table [products]="productsResource.value()?.products ?? []">

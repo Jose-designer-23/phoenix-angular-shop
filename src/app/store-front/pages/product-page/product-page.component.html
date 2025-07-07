@@ -1,0 +1,70 @@
+<body class="DarkBody min-h-screen flex flex-col">
+
+@if( productResource.isLoading() ) {
+  <div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+}
+
+@if( productResource.hasValue() ) {
+  <div class="px-4 sm:px-8">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <product-carousel [images]="productResource.value()?.images ?? []"/>
+      <div>
+        <h2 class="text-2xl font-bold font-montserrat DarkText mb-4 sm:mb-0">
+          {{ productResource.value()?.title }}
+        </h2>
+
+        <div class="w-full h-px bg-gray-300 dark:bg-white my-6"></div>
+
+          <p class="DarkText mb-6 sm:mb-0 text-justify">
+            {{productResource.value()?.description}}
+          </p>
+
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-6 mb-4 sm:mb-0">
+            <h2 class="text-2xl font-bold DarkText mb-4 sm:mb-0">
+              Precio: {{productResource.value()?.price}}€
+            </h2>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-end sm:items-center">
+              <div class="size-selector w-full sm:mb-6 sm:w-auto"> <label for="size-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Talla:</label>
+                <select id="size-select"
+                        [ngModel]="selectedSize()"
+                        (ngModelChange)="selectedSize.set($event)"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 border-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm DarkBody DarkText DarkDivider dark:border-2"
+                        required>
+                  <option [value]="null" disabled>Selecciona una talla</option>
+                  <option *ngFor="let size of productResource.value()?.sizes" [value]="size">{{ size }}</option>
+                </select>
+              </div>
+
+              <button
+                (click)="onAddToCart()"
+                class="botonBGText HoverBGText DarkBoton DarkHoverBG DarkHoverText DarkText font-bold py-2 px-6 rounded-lg shadow w-full sm:w-auto"
+                [disabled]="!selectedSize()"
+              >
+                Añadir al carrito
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 sm:mt-0"> <p class="DarkText sm:pb-5 sm:mb-0">
+              <span class="font-bold">Tallas disponibles:</span> {{productResource.value()?.sizes?.join(", ")}}
+            </p>
+          </div>
+
+      </div>
+
+    </div>
+  </div>
+}
+  @if(showSuccessMessage()) {
+    <div
+      class="alert alert-success fixed bottom-4 right-4 w-80 animate-fadeIn text-white px-4 py-2 rounded-lg shadow-lg"
+      style="background-color: #20b468; /* Un verde de éxito */"
+    >
+      <span>Producto añadido al carrito</span>
+    </div>
+  }
+
+</body>

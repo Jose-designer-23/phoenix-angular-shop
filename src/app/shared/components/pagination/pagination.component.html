@@ -1,0 +1,19 @@
+<div class="join flex justify-center items-center" [ngClass]="{'mt-4 mb-10': spacing}">
+  @for (page of getPagesList(); track page){
+    <button
+      class="join-item btn hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+      [class.bg-blue-600]="page === activePage()"
+      [class.DarkBoton]="page === activePage()"
+      [class.text-white]="page === activePage()"
+      [routerLink]="[]"
+      [queryParams]="{page: page}"
+      (click)="activePage.set(page)"
+    >
+      {{page}}
+    </button>
+
+  } @empty {
+
+  }
+
+</div>

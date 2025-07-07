@@ -1,1 +1,117 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----- FUENTE MONTSERRAT ----- */
+@layer base {
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/assets/fonts/montserrat-alternates/montserrat-alternates-medium.ttf") format("truetype");
+  }
+}
+
+/* ====== Modo claro ====== */
+
+.botonBGText{
+  @apply  bg-blue-600 text-white
+}
+
+.HoverBGText{
+  @apply hover:bg-green-800 hover:text-yellow-400 transition-all duration-200
+}
+
+.card-hover-group {
+  @apply transition-shadow transition-transform duration-300 cursor-pointer;
+}
+.card-hover-group:hover {
+  @apply shadow-2xl scale-[1.03];
+
+  box-shadow: 0 16px 32px -4px rgba(34,197,94,0.7);
+}
+.card-hover-group:hover .card-body {
+  @apply bg-green-800 text-white transition-colors duration-300;
+}
+.card-hover-group:hover .card-title,
+.card-hover-group:hover .card-body p {
+  @apply text-white;
+}
+.card-body {
+  @apply rounded-lg transition-colors duration-300;
+}
+.shadow-btn {
+  @apply bg-blue-600 text-white shadow transition-all duration-200;
+}
+.card-hover-group:hover .shadow-btn {
+  @apply bg-yellow-300 hover:bg-yellow-400 text-black;
+}
+.shadow-btn:active {
+  @apply scale-95;
+}
+.product-img {
+  @apply w-full h-[260px] object-cover rounded-t-3xl shadow;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #fff;
+  transition: box-shadow 0.3s;
+}
+@media (max-width: 640px) {
+  .product-img {
+    @apply h-[180px];
+  }
+}
+
+/* ====== Modo oscuro ====== */
+
+html.dark .DarkNavbar {
+  @apply bg-gray-800;
+}
+html.dark .DarkBody {
+  @apply bg-gray-800;
+}
+html.dark body {
+  @apply bg-gray-800;
+}
+html.dark .DarkText{
+  @apply text-white;
+}
+html.dark .DarkShop{
+  @apply text-blue-300;
+}
+html.dark .DarkHoverBG{
+  @apply hover:bg-white/10 transition-colors duration-200;
+}
+html.dark .DarkHoverText{
+  @apply hover:text-yellow-300 transition-colors duration-200;
+}
+html.dark .DarkActiveRoute {
+  @apply text-sky-400;
+}
+html.dark .DarkProductCard {
+  @apply bg-gray-700 text-slate-100 border border-gray-700;
+}
+html.dark .DarkBoton {
+  @apply bg-sky-600 shadow transition-colors duration-200;
+}
+
+html.dark .DarkBotonBgClaro{
+  @apply hover:bg-slate-700 shadow transition-colors duration-200
+}
+
+html.dark .DarkDivider{
+  @apply border-white;
+}
+
+html.dark .card-hover-group:hover .card-body {
+  @apply text-yellow-300 transition-colors duration-300;
+  background: rgba(59,130,246,0.10);
+}
+html.dark .card-hover-group:hover .card-title,
+html.dark .card-hover-group:hover .card-body p {
+  @apply text-yellow-300;
+}
+html.dark .card-hover-group:hover .shadow-btn {
+  @apply bg-green-700 hover:bg-emerald-700 text-white transition-colors duration-200 shadow-md shadow-white/10;
+}
+html.dark .card-hover-group:hover {
+  @apply scale-[1.03];
+  box-shadow: 0 16px 32px -4px rgba(255,255,255,0.40);
+}

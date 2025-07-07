@@ -1,0 +1,31 @@
+<div class="card card-compact bg-base-100 shadow-xl animate-fadeIn card-hover-group DarkProductCard max-w-xs w-full mx-auto sm:max-w-sm">
+  <figure class="aspect-[4/5] w-full overflow-hidden">
+    <img
+      [src]="product().images | productImage"
+      [alt]="product().title"
+      class="w-full h-full object-cover"
+    />
+  </figure>
+  <div class="card-body p-4 sm:p-6 flex flex-col justify-between min-h-[200px]">
+    <h2
+      class="card-title font-montserrat text-lg font-bold hover:underline pointer"
+      [routerLink]="['/product', product().slug]"
+      tabindex="0"
+    >
+      {{product().title}}
+    </h2>
+    <p>
+      {{product().description | slice : 0 : 70}}...
+    </p>
+    <div class="card-actions justify-end mt-auto">
+      <button
+        class="shadow-btn DarkBoton px-6 py-2 rounded-lg font-semibold flex items-center gap-2"
+        [routerLink]="['/product', product().slug]"
+        tabindex="0"
+      >
+        Ver detalles
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</div>

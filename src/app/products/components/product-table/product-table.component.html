@@ -1,0 +1,77 @@
+<body class="DarkBody min-h-screen flex flex-col">
+<div class="overflow-x-auto">
+  <table class="table">
+
+    <thead>
+      <tr class="border-b border-gray-400">
+        <th>
+          <label>
+            <input type="checkbox" class="checkbox border-gray-500 DarkDivider" />
+          </label>
+        </th>
+        <th class="text-black DarkText">Título</th>
+        <th class="text-black DarkText">Precio</th>
+        <th class="text-black DarkText">Inventario</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+        @for (product of products(); track product.id) {
+
+          <tr class="border-b border-gray-400 DarkDivider">
+            <th>
+              <label>
+                <input type="checkbox" class="checkbox border-gray-500 DarkDivider " />
+              </label>
+            </th>
+            <td>
+              <div class="flex items-center gap-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle h-12 w-12">
+                    <img
+                      [src]="product.images | productImage"
+                      [alt]="product.title" />
+                  </div>
+                </div>
+                <div>
+                  <a
+                    [routerLink]="['/admin/products', product.id]"
+                    class="font-bold  hover:text-green-800 transition-all duration-200 DarkText DarkHoverText">{{product.title}}
+                  </a>
+                  <div class="text-sm opacity-50 DarkText">{{product.sizes.join(", ")}}</div>
+                </div>
+              </div>
+            </td>
+            <td class="DarkText">
+              {{product.price | currency}}
+            </td>
+            <td>
+              @if(product.stock <= 10) {
+                <span class="badge bg-red-600 text-white">{{product.stock}}</span>
+              }
+              @else if(product.stock <= 20) {
+                <span class="badge bg-yellow-600 text-white">{{product.stock}}</span>
+              }
+              @else {
+                <span class="badge bg-green-600 text-white">{{product.stock}}</span>
+              }
+
+
+
+            </td>
+            <th>
+              <a
+                [routerLink]="['/admin/products', product.id]"
+                class="btn btn-ghost text-blue-800 DarkActiveRoute btn-md  hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+              >
+                Detalles
+              </a>
+            </th>
+          </tr>
+      }
+
+  </table>
+</div>
+
+</body>

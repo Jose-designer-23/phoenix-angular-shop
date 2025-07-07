@@ -1,0 +1,216 @@
+<h1 class="text-2xl font-bold DarkText">{{ product().title }}</h1>
+<div class="w-full h-px bg-gray-300 dark:bg-white my-6"></div>
+
+<form
+  [formGroup]="productForm"
+  class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+  (ngSubmit)="onSubmit()"
+>
+
+  <div class="flex flex-col gap-2">
+    <h2 class="text-2xl font-bold h-12 DarkText">Datos generales</h2>
+    <input
+      type="text"
+      placeholder="Título"
+      class="input input-bordered w-full DarkBody DarkText DarkDivider dark:border-2 "
+      formControlName="title"
+      [class.border-red-600]="productForm.get('title')?.errors ?? false"
+    />
+
+    <form-error-label [control]="productForm.get('title')!" />
+
+    <input
+      type="text"
+      placeholder="Slug"
+      class="input input-bordered w-full DarkBody DarkText DarkDivider dark:border-2"
+      formControlName="slug"
+      [class.border-red-600]="productForm.get('slug')?.errors ?? false"
+    />
+
+    <form-error-label [control]="productForm.get('slug')!" />
+
+    <textarea
+      class="textarea textarea-bordered DarkBody DarkText DarkDivider dark:border-2"
+      placeholder="Descripción"
+      rows="6"
+      formControlName="description"
+      [class.border-red-600]="productForm.get('description')?.errors ?? false"
+    ></textarea>
+
+    <form-error-label [control]="productForm.get('description')!" />
+
+    <h2 class="text-lg font-bold  DarkText">Datos de venta</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div>
+        <input
+          type="number"
+          placeholder="Precio"
+          class="input input-bordered w-full DarkBody DarkText DarkDivider dark:border-2"
+          formControlName="price"
+          [class.border-red-600]="productForm.get('price')?.errors ?? false"
+        />
+
+        <form-error-label [control]="productForm.get('price')!" />
+      </div>
+
+      <div>
+        <input
+          type="number"
+          placeholder="Inventario"
+          class="input input-bordered w-full DarkBody DarkText DarkDivider dark:border-2"
+          formControlName="stock"
+          [class.border-red-600]="productForm.get('stock')?.errors ?? false"
+        />
+
+        <form-error-label [control]="productForm.get('stock')!" />
+      </div>
+    </div>
+
+    <!-- tags -->
+    <input
+      type="text"
+      placeholder="Tags"
+      class="input input-bordered w-full DarkBody DarkText DarkDivider dark:border-2"
+      formControlName="tags"
+      [class.border-red-600]="productForm.get('tags')?.errors ?? false"
+    />
+
+    <form-error-label [control]="productForm.get('tags')!" />
+
+    <!-- Botones para el género -->
+    <div class="grid grid-cols-3 gap-2">
+      <button
+        type="button"
+        class="btn btn-sm text-white hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+        [ngClass]="{
+          'bg-blue-500': productForm.value.gender === 'men',
+          'bg-blue-300': productForm.value.gender !== 'men'
+        }"
+        (click)="productForm.patchValue({ gender: 'men' })"
+      >
+        Masculino
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sm text-white hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+        [ngClass]="{
+          'bg-pink-500': productForm.value.gender === 'women',
+          'bg-pink-300': productForm.value.gender !== 'women'
+        }"
+        (click)="productForm.patchValue({ gender: 'women' })"
+      >
+        Femenino
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sm text-white hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+        [ngClass]="{
+          'bg-orange-500': productForm.value.gender === 'kid',
+          'bg-orange-300': productForm.value.gender !== 'kid'
+        }"
+        (click)="productForm.patchValue({ gender: 'kid' })"
+      >
+        Kid
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sm text-white hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all duration-200"
+        [ngClass]="{
+          'bg-yellow-600': productForm.value.gender === 'unisex',
+          'bg-yellow-300': productForm.value.gender !== 'unisex'
+        }"
+        (click)="productForm.patchValue({ gender: 'unisex' })"
+      >
+        Unisex
+      </button>
+    </div>
+
+    <!-- <select class="select select-bordered w-full">
+      <option value="male">Masculino</option>
+      <option value="female">Femenino</option>
+      <option value="unisex">Unisex</option>
+    </select> -->
+
+
+    <!-- Sizes -->
+    <div class="grid grid-cols-6 gap-2">
+      @for (sizeData of sizesWithColors; track sizeData.size) {
+        <button
+          class="btn btn-sm transition-all hover-custom DarkHoverBG DarkHoverText duration-200" type="button"
+          (click)="onSizeClicked(sizeData.size)"
+
+          [class.btn-outline]="!productForm.value.sizes?.includes(sizeData.size)"
+          [class.DarkText]="!productForm.value.sizes?.includes(sizeData.size)"
+          [class.DarkDivider]="!productForm.value.sizes?.includes(sizeData.size)"
+          [class.dark:border-2]="!productForm.value.sizes?.includes(sizeData.size)"
+
+          [class]="productForm.value.sizes?.includes(sizeData.size) ? sizeData.selectedColorClass : ''"
+
+          [class.text-white]="productForm.value.sizes?.includes(sizeData.size)"
+          [class.text-base-content]="!productForm.value.sizes?.includes(sizeData.size)"
+        >
+          {{ sizeData.size }}
+        </button>
+      }
+    </div>
+
+
+
+  </div>
+
+  <!-- Imágenes -->
+  <div class="flex flex-col gap-2">
+    <div class="flex justify-end h-12">
+      <button
+        class="btn bg-green-700 text-white hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all durantion 200"
+        type="submit"
+      >
+
+
+        Guardar
+      </button>
+    </div>
+
+    <product-carousel [images]="imagesToCarousel()" />
+
+    <div class="relative w-full mt-4">
+      <label
+        for="file-upload"
+        class="file-input file-input-bordered w-full cursor-pointer bg-white dark:bg-slate-300 text-black hover:bg-green-800 hover:text-yellow-400 DarkHoverBG DarkHoverText transition-all durantion 200 flex items-center justify-center"
+      >
+        Elegir archivos
+        <input
+          id="file-upload"
+          type="file"
+          multiple
+          accept="image/*"
+          class="hidden"
+          (change)="onFilesChanged($event)"
+        />
+      </label>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+      @for (image of tempImages(); track image) {
+      <img
+        [src]="image"
+        alt="Temporal image"
+        class="w-full h-30 object-cover rounded-xl"
+      />
+      }
+    </div>
+  </div>
+</form>
+
+@if (wasSaved()) {
+<div
+  class="alert alert-success fixed bottom-4 right-4 w-80 animate-fadeIn text-white"
+>
+  <span>Datos actualizados correctamente</span>
+</div>
+
+}
