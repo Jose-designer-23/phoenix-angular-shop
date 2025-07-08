@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom, forkJoin, map, Observable, of, tap } from 'rxjs';
 import { ThemeService } from 'src/app/themeDark.service';
 
-const baseUrl = 'http://localhost:3000/api';
+// const baseUrl = 'http://localhost:3000/api';
 
 @Component({
   selector: 'product-details',
