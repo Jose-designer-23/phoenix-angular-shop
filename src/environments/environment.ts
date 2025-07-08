@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: "https://nest-teslo-shop-chtf.onrender.com/api",
+  baseUrl: "https://10-nest-teslo-shop-backend.fly.dev/api",
 };
