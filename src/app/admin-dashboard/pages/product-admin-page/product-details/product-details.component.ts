@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, OnInit, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
@@ -9,14 +9,15 @@ import { CommonModule } from '@angular/common';
 import { FormErrorLabelComponent } from '@shared/components/form-error-label/form-error-label.component';
 import { ProductsService } from '../../../../products/services/products.service';
 import { Router } from '@angular/router';
-import { firstValueFrom, forkJoin, map, Observable, of, tap } from 'rxjs';
+import { firstValueFrom} from 'rxjs';
 import { ThemeService } from 'src/app/themeDark.service';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
-// const baseUrl = 'http://localhost:3000/api';
+
 
 @Component({
   selector: 'product-details',
-  imports: [ProductCarouselComponent, ReactiveFormsModule, CommonModule, FormErrorLabelComponent],
+  imports: [ProductCarouselComponent, ReactiveFormsModule, CommonModule, FormErrorLabelComponent, TranslateModule],
   templateUrl: './product-details.component.html',
   styleUrl: "product-details.component.css",
 })
@@ -32,6 +33,7 @@ export class ProductDetailsComponent implements OnInit {
     imageFileList: FileList|undefined = undefined;
     http = inject(HttpClient);
     themeService = inject(ThemeService);
+    public translate = inject(TranslateService);
 
     fb = inject(FormBuilder);
 
@@ -66,9 +68,57 @@ export class ProductDetailsComponent implements OnInit {
       { size: "XXL", colorClass: "bg-indigo-500", selectedColorClass: "bg-indigo-700" },
    ];
 
+    constructor() {
+
+    effect(() => {
+      const currentProduct = this.product();
+      const currentLang = this.translate.currentLang;
+
+      if (currentProduct) {
+        this.setFormValueWithTranslations(currentProduct);
+      }
+    }, { allowSignalWrites: true });
+  }
+
+
     ngOnInit(): void {
       this.setFormValue(this.product());
     }
+
+    setFormValueWithTranslations(product: Product): void {
+
+      const productTranslations = this.translate.instant(product.slug);
+
+      let titleToSet = product.title;
+      let descriptionToSet = product.description;
+
+
+      if (typeof productTranslations === 'object' && productTranslations !== null) {
+        if (productTranslations.title) {
+          titleToSet = productTranslations.title;
+        }
+        if (productTranslations.description) {
+          descriptionToSet = productTranslations.description;
+        }
+      }
+
+        this.productForm.patchValue({
+        title: titleToSet,
+        description: descriptionToSet,
+        slug: product.slug, // El SLUG NO SE TRADUCE. Siempre usa el original del producto.
+        price: product.price,
+        stock: product.stock,
+        sizes: product.sizes,
+        tags: product.tags?.join(","),
+        gender: product.gender,
+        // Asegúrate de incluir esto si tu formulario lo maneja
+      });
+
+    }
+
+
+
+
 
     setFormValue(formLike: Partial<Product>){
       this.productForm.reset(this.product() as any);
@@ -112,7 +162,7 @@ export class ProductDetailsComponent implements OnInit {
       console.log({ productLike });
 
         if (this.product().id === 'new') {
-        // Crear producto
+
           const product = await firstValueFrom(
             this.productsService.createProduct(productLike, this.imageFileList)
           );

@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect } from '@angular/core';
+import { Component, inject, signal, effect, computed } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../products/services/products.service';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -7,10 +7,11 @@ import { Product } from '../../../products/interfaces/product.interface';
 import { CartService } from '../cart-page/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-page',
-  imports: [ProductCarouselComponent, CommonModule, FormsModule],
+  imports: [ProductCarouselComponent, CommonModule, FormsModule, TranslateModule ],
   templateUrl: './product-page.component.html',
 })
 export class ProductPageComponent {
@@ -18,6 +19,7 @@ export class ProductPageComponent {
   activatedRoute = inject(ActivatedRoute);
   productService = inject(ProductsService);
   private cartService = inject(CartService);
+  public translate = inject(TranslateService);
 
   productIdSlug = this.activatedRoute.snapshot.params["idSlug"];
 
@@ -31,6 +33,47 @@ export class ProductPageComponent {
     loader: ({ request }) =>
       this.productService.getProductByIdSlug(request.idSlug),
   });
+
+
+
+  translatedTitle = computed(() => {
+    const product = this.productResource.value();
+    const currentLang = this.translate.currentLang;
+
+    if (!product) return this.translate.instant('Cargando producto...');
+
+
+    const productTranslations = this.translate.instant(product.slug);
+
+
+    if (typeof productTranslations === 'object' && productTranslations !== null) {
+      return productTranslations.title || product.title;
+    }
+
+
+    return product.title;
+  });
+
+
+  translatedDescription = computed(() => {
+    const product = this.productResource.value();
+    const currentLang = this.translate.currentLang;
+
+    if (!product) return '';
+
+    const productTranslations = this.translate.instant(product.slug);
+
+    if (typeof productTranslations === 'object' && productTranslations !== null) {
+      return productTranslations.description || product.description;
+    }
+
+    return product.description;
+  });
+
+  // Si necesitas un método para manejar cambios de idioma aquí, aunque no es lo habitual
+  // public changeLang(lang: string) {
+  //   this.translate.use(lang);
+  // }
 
   constructor() {
 

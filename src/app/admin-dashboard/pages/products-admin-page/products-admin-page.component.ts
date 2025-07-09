@@ -6,10 +6,12 @@ import { PaginationService } from '@shared/components/pagination/pagination.serv
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import { RouterLink } from '@angular/router';
 import { ThemeService } from '../../../themeDark.service';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products-admin-page',
-  imports: [ProductTableComponent, PaginationComponent, RouterLink],
+  imports: [ProductTableComponent, PaginationComponent, RouterLink, CommonModule, TranslateModule],
   templateUrl: './products-admin-page.component.html',
 })
 export class ProductsAdminPageComponent {
@@ -17,6 +19,7 @@ export class ProductsAdminPageComponent {
     productsService = inject(ProductsService);
     paginationService = inject(PaginationService);
     themeService = inject(ThemeService);
+    public translate = inject(TranslateService);
 
     productsPerPage = signal(10);
 

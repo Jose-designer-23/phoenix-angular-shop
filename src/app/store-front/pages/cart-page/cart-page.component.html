@@ -29,7 +29,7 @@
               <div class="flex items-center">
                 <img [src]="item.image | productImage" [alt]="item.title" class="w-16 h-16 object-cover rounded-md mr-4">
                 <div class="flex flex-col sm:flex-row sm:items-center"> <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Producto:</span>
-                    <span>{{ item.title }}</span>
+                    <span>{{ item.slug + '.title' | translate }}</span>
                 </div>
               </div>
             </td>

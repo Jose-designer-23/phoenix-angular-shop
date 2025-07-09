@@ -8,10 +8,14 @@ import { ProductsService } from '@products/services/products.service';
 import { PaginationService } from '@shared/components/pagination/pagination.service';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { ViewportScroller } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+
+
 
 @Component({
   selector: 'app-gender-page',
-  imports: [ProductCardComponent, HomePageComponent, PaginationComponent],
+  imports: [ProductCardComponent, HomePageComponent, PaginationComponent, CommonModule, TranslateModule],
   templateUrl: './gender-page.component.html',
 })
 export class GenderPageComponent {
@@ -19,6 +23,7 @@ export class GenderPageComponent {
   productsService = inject(ProductsService);
   paginationService = inject(PaginationService);
   private scroller = inject(ViewportScroller);
+  public translate = inject(TranslateService);
 
   gender = toSignal(this.route.params.pipe(map(({gender}) => gender)));
 

@@ -12,10 +12,10 @@
       [routerLink]="['/product', product().slug]"
       tabindex="0"
     >
-      {{product().title}}
+      {{ translatedTitle() }}
     </h2>
     <p>
-      {{product().description | slice : 0 : 70}}...
+      {{ translatedDescription() | slice : 0 : 70 }}...
     </p>
     <div class="card-actions justify-end mt-auto">
       <button

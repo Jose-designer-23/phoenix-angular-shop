@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="productTitle_{product().slug}" datatype="html">
+        <source> &gt; <x id="INTERPOLATION" equiv-text="{{product().title}}"/> </source>
+        <target> &gt; <x id="INTERPOLATION" equiv-text="{{product().title}}"/> </target> <context-group purpose="location">
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/products/components/product-card/product-card.component.html</context>
+          <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="productDescription_{product().slug}" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{product().description | slice : 0 : 70}}"/>... </source>
+        <target> <x id="INTERPOLATION" equiv-text="{{product().description | slice : 0 : 70}}"/>... </target> <context-group purpose="location">
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/products/components/product-card/product-card.component.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

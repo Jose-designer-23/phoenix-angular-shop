@@ -6,6 +6,7 @@ export interface CartItem {
   id: string;
   image: string;
   title: string;
+  slug: string;
   size: string;
   price: number;
   quantity: number;
@@ -61,6 +62,7 @@ export class CartService {
           id: product.id,
           image: product.images[0],
           title: product.title,
+          slug: product.slug,
           size: selectedSize,
           price: product.price,
           quantity: 1

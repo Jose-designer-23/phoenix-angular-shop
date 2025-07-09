@@ -5,7 +5,8 @@ import {
   Gender,
   Product,
   ProductsResponse,
-} from '@products/interfaces/product.interface';
+}
+from '@products/interfaces/product.interface';
 import { forkJoin, map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -155,4 +156,6 @@ export class ProductsService {
 
     console.log('Caché actualizado');
   }
+
+
 }
