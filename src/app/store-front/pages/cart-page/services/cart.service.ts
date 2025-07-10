@@ -38,11 +38,7 @@ export class CartService {
     }
   }
 
-  /**
-   * Añade un producto al carrito. Si ya existe, incrementa la cantidad.
-   * @param product El objeto producto con sus detalles.
-   * @param selectedSize La talla seleccionada por el usuario.
-   */
+
   addToCart(product: any, selectedSize: string) {
     this.cartItems.update(currentItems => {
       const existingItemIndex = currentItems.findIndex(
