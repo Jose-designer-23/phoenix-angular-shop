@@ -168,5 +168,5 @@ This section provides a quick reference to the most common Angular CLI commands 
     ng e2e
     ```
     (Note that Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs, such as Cypress or Protractor if still used).
-
+    [Leer este README en Español](README.md)
 ---
