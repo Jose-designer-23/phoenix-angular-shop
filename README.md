@@ -168,5 +168,5 @@ Esta sección proporciona una referencia rápida a los comandos más comunes de 
     ng e2e
     ```
     (Ten en cuenta que Angular CLI no viene con un framework de pruebas E2E por defecto. Puedes elegir uno que se adapte a tus necesidades, como Cypress o Protractor si aún lo usas).
-
+    [Read this README in English](README-en.md)
 ---
