@@ -1,137 +1,135 @@
-
-  <h1 class="text-3xl font-bold font-montserrat mx-3 sm:mx-0 DarkText">Productos del carrito</h1>
-  <div class="w-full h-px bg-gray-300 dark:bg-white my-6"></div>
-  <ng-container *ngIf="cartItems().length > 0; else emptyCart">
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white DarkBody border border-gray-200 rounded-lg shadow-md">
-        <thead class="hidden sm:table-header-group">
-          <tr class="bg-gray-100 dark:bg-gray-300 text-gray-600 dark:text-black uppercase text-sm leading-normal">
-            <th class="py-3 px-6 text-left">Producto</th>
-            <th class="py-3 px-6 text-left">Talla</th>
-            <th class="py-3 px-6 text-left">Precio</th>
-            <th class="py-3 px-6 text-left">Cantidad</th>
-            <th class="py-3 px-6 text-left">Subtotal</th>
-            <th class="py-3 px-6 text-left">Acciones</th>
-          </tr>
-        </thead>
-        <tbody class="text-black DarkText text-sm font-normal">
-          <tr *ngFor="let item of cartItems()" class="
-              block sm:table-row
-              mb-4 sm:mb-0
-              bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md sm:shadow-none
-              overflow-hidden sm:overflow-visible
+<h1 class="text-3xl font-bold font-montserrat mx-3 sm:mx-0 DarkText">Productos del carrito</h1>
+<div class="w-full h-px bg-gray-300 dark:bg-white my-6"></div>
+<ng-container *ngIf="cartItems().length > 0; else emptyCart">
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white DarkBody border border-gray-200 rounded-lg shadow-md">
+      <thead class="hidden lg:table-header-group">
+        <tr class="bg-gray-100 dark:bg-gray-300 text-gray-600 dark:text-black uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Producto</th>
+          <th class="py-3 px-6 text-left">Talla</th>
+          <th class="py-3 px-6 text-left">Precio</th>
+          <th class="py-3 px-6 text-left">Cantidad</th>
+          <th class="py-3 px-6 text-left">Subtotal</th>
+          <th class="py-3 px-6 text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="text-black DarkText text-sm font-normal">
+        <tr *ngFor="let item of cartItems()" class="
+            block lg:table-row       /* A partir de 'lg' (1024px) se comporta como fila de tabla */
+            mb-4 lg:mb-0             /* Margen inferior en 'lg' y abajo */
+            bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md lg:shadow-none /* Sombra en tarjeta, sin sombra en tabla */
+            overflow-hidden lg:overflow-visible /* Oculta desbordamiento en tarjeta, visible en tabla */
           ">
-            <td class="
+          <td class="
                 py-3 px-6 text-left whitespace-nowrap
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 border-b border-gray-200 dark:border-gray-700 last:border-b-0
                 bg-white dark:bg-gray-800 ">
-              <div class="flex items-center">
-                <img [src]="item.image | productImage" [alt]="item.title" class="w-16 h-16 object-cover rounded-md mr-4">
-                <div class="flex flex-col sm:flex-row sm:items-center"> <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Producto:</span>
-                    <span>{{ item.slug + '.title' | translate }}</span>
-                </div>
+            <div class="flex items-center">
+              <img [src]="item.image | productImage" [alt]="item.title" class="w-16 h-16 object-cover rounded-md mr-4">
+              <div class="flex flex-col sm:flex-row sm:items-center">
+                <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Producto:</span>
+                <span>{{ item.slug + '.title' | translate }}</span>
               </div>
-            </td>
-            <td class="
+            </div>
+          </td>
+          <td class="
                 py-3 px-6 text-left
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 border-b border-gray-200 dark:border-gray-700 last:border-b-0
                 bg-white dark:bg-gray-800
             ">
-              <div class="flex items-center">
-                  <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Talla:</span>
-                  <span>{{ item.size }}</span>
-              </div>
-            </td>
-            <td class="
+            <div class="flex items-center">
+              <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Talla:</span>
+              <span>{{ item.size }}</span>
+            </div>
+          </td>
+          <td class="
                 py-3 px-6 text-left
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 border-b border-gray-200 dark:border-gray-700 last:border-b-0
                 bg-white dark:bg-gray-800
             ">
-              <div class="flex items-center">
-                  <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Precio:</span>
-                  <span>{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</span>
-              </div>
-            </td>
-            <td class="
+            <div class="flex items-center">
+              <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Precio:</span>
+              <span>{{ item.price | currency:'EUR':'symbol':'1.2-2' }}</span>
+            </div>
+          </td>
+          <td class="
                 py-3 px-6 text-left
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 border-b border-gray-200 dark:border-gray-700 last:border-b-0
                 bg-white dark:bg-gray-800
             ">
-              <div class="flex items-center">
-                  <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Cantidad:</span>
-                  <span>{{ item.quantity }}</span>
-              </div>
-            </td>
-            <td class="
+            <div class="flex items-center">
+              <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Cantidad:</span>
+              <span>{{ item.quantity }}</span>
+            </div>
+          </td>
+          <td class="
                 py-3 px-6 text-left
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 border-b border-gray-200 dark:border-gray-700 last:border-b-0
                 bg-white dark:bg-gray-800
             ">
-              <div class="flex items-center">
-                  <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Subtotal:</span>
-                  <span>{{ (item.price * item.quantity) | currency:'EUR':'symbol':'1.2-2' }}</span>
-              </div>
-            </td>
-            <td class="
+            <div class="flex items-center">
+              <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Subtotal:</span>
+              <span>{{ (item.price * item.quantity) | currency:'EUR':'symbol':'1.2-2' }}</span>
+            </div>
+          </td>
+          <td class="
                 py-3 px-6 text-left
-                block sm:table-cell
+                block lg:table-cell  /* A partir de 'lg' se comporta como celda de tabla */
                 bg-white dark:bg-gray-800
-                pb-3 sm:pb-0
+                pb-3 lg:pb-0      /* Padding inferior en tarjeta, no en tabla */
             ">
-              <div class="flex items-center">
-                  <span class="block sm:hidden font-semibold mr-2 w-20 flex-shrink-0">Acciones:</span>
-                  <button
-                    (click)="removeFromCart(item.id, item.size)"
-                    class="bg-red-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-1 px-2 rounded text-xs"
-                  >
-                    Eliminar
-                  </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <div class="flex items-center">
+              <span class="block lg:hidden font-semibold mr-2 w-20 flex-shrink-0">Acciones:</span>
+              <button
+                (click)="removeFromCart(item.id, item.size)"
+                class="bg-red-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-1 px-2 rounded text-xs"
+              >
+                Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <div class="flex flex-col sm:flex-row sm:justify-end mt-6 items-center sm:items-stretch">
-      <div class="text-center sm:text-right w-full sm:w-auto">
-        <p class="text-lg font-semibold DarkText">Total de artículos: {{ totalItems }}</p>
-        <p class="text-2xl font-bold mt-2 DarkText">Total: {{ totalPrice | currency:'EUR':'symbol':'1.2-2' }}</p>
-        <div class="flex flex-col sm:flex-row mt-4 gap-2">
-          <button
-            (click)="clearCart()"
-            class="bg-gray-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-2 px-4 rounded w-full sm:w-auto"
-          >
-            Vaciar Carrito
-          </button>
-          <button
-            [disabled]="true"
-            class="bg-green-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-2 px-4 rounded w-full sm:w-auto"
-          >
-            Proceder al Pago
-          </button>
-        </div>
-
+  <div class="flex flex-col lg:flex-row lg:justify-end mt-6 items-center lg:items-stretch">
+    <div class="text-center lg:text-right w-full lg:w-auto">
+      <p class="text-lg font-semibold DarkText">Total de artículos: {{ totalItems }}</p>
+      <p class="text-2xl font-bold mt-2 DarkText">Total: {{ totalPrice | currency:'EUR':'symbol':'1.2-2' }}</p>
+      <div class="flex flex-col lg:flex-row mt-4 gap-2">
+        <button
+          (click)="clearCart()"
+          class="bg-gray-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-2 px-4 rounded w-full lg:w-auto"
+        >
+          Vaciar Carrito
+        </button>
+        <button
+          [disabled]="true"
+          class="bg-green-600 HoverBGText DarkHoverBG DarkHoverText text-white font-bold py-2 px-4 rounded w-full lg:w-auto"
+        >
+          Proceder al Pago
+        </button>
       </div>
+
     </div>
-    <p class="text-sm text-gray-700 DarkText text-center">
-            * La funcionalidad de pago esta deshabilitada en estos momentos.
-            <br>Si quieres, puedes seguir viendo otras funcionalidades de la tienda.
-          </p>
-  </ng-container>
+  </div>
+  <p class="text-sm text-gray-700 DarkText text-center">
+              * La funcionalidad de pago esta deshabilitada en estos momentos.
+              <br>Si quieres, puedes seguir viendo otras funcionalidades de la tienda.
+            </p>
+</ng-container>
 
-  <ng-template #emptyCart>
-    <div class="text-center py-10">
-      <p class="text-xl text-gray-600 DarkText">Tu carrito está vacío.</p>
-      <a routerLink="/" class="mt-4 inline-block botonBGText DarkBoton HoverBGText DarkHoverBG DarkHoverText font-bold py-2 px-4 rounded">
-        Ir a la tienda
-      </a>
-    </div>
-  </ng-template>
-
-
+<ng-template #emptyCart>
+  <div class="text-center py-10">
+    <p class="text-xl text-gray-600 DarkText">Tu carrito está vacío.</p>
+    <a routerLink="/" class="mt-4 inline-block botonBGText DarkBoton HoverBGText DarkHoverBG DarkHoverText font-bold py-2 px-4 rounded">
+      Ir a la tienda
+    </a>
+  </div>
+</ng-template>
