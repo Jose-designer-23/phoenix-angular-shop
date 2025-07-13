@@ -34,6 +34,12 @@ Este proyecto Fullstack ha sido desarrollado con **Angular** en el frontend y **
 
 ### ⚙️ Panel de Administración (Frontend - Angular & Backend - NestJS)
 
+**Acceso al Panel de Administración:**
+Para acceder al panel de administración de la tienda en un entorno local de desarrollo:
+
+* **Usuario de Administración:** Las credenciales de un usuario administrador preconfigurado se cargan automáticamente al ejecutar la **`seed` de la base de datos del backend**.
+* **Instrucciones de Acceso:** Por favor, consulta los scripts de `seed` del proyecto de backend para conocer el usuario y contraseña por defecto, o crea uno nuevo siguiendo la documentación del backend.
+
 * **Acceso Restringido:** El botón del "Panel de administración" solo es visible si el usuario tiene rol de administrador.
 * **Gestión de Productos Completa:**
     * **Tabla de Productos:** Muestra todos los productos de la tienda con paginación configurable.
@@ -168,5 +174,5 @@ Esta sección proporciona una referencia rápida a los comandos más comunes de 
     ng e2e
     ```
     (Ten en cuenta que Angular CLI no viene con un framework de pruebas E2E por defecto. Puedes elegir uno que se adapte a tus necesidades, como Cypress o Protractor si aún lo usas).
-    [Read this README in English](README-en.md)
 ---
+[Read this README in English](README-en.md)
