@@ -73,6 +73,8 @@ Para acceder al panel de administración de la tienda en un entorno local de des
 * [**Ngx-Translate**](https://github.com/ngx-translate/core) - Herramienta de **internacionalización (i18n)** utilizada para ofrecer la aplicación en español (con capacidad de añadir más idiomas).
 * [**Angular Signals**](https://angular.dev/guide/signals) - Para la gestión de estado reactiva del carrito y otras partes de la UI.
 * [**@tailwindcss/line-clamp**](https://github.com/tailwindlabs/tailwindcss-line-clamp) - Plugin para truncar texto.
+* **Swiper** - Librería para la funcionalidad de carruseles.
+* **RxJS** - Para la programación reactiva y el manejo de datos asíncronos.
 
 ### Backend:
 
