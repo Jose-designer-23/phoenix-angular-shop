@@ -67,7 +67,8 @@ Para acceder al panel de administración de la tienda en un entorno local de des
 
 ### Frontend:
 
-* [**Angular**](https://angular.io/) (**v19.2.15**) - Framework para la interfaz de usuario.
+* [**Angular**](https://angular.io/) (**v19.2.14**) - Framework para la interfaz de usuario.
+* **[TypeScript](https://www.typescriptlang.org/) (~5.7.2):** El lenguaje de programación base que añade tipado estático.
 * [**Tailwind CSS**](https://tailwindcss.com/) - Framework CSS para un diseño rápido y responsivo.
 * [**DaisyUI**](https://daisyui.com/) - Plugin de componentes de Tailwind CSS.
 * [**Ngx-Translate**](https://github.com/ngx-translate/core) - Herramienta de **internacionalización (i18n)** utilizada para ofrecer la aplicación en español (con capacidad de añadir más idiomas).
