@@ -67,7 +67,8 @@ To access the store's admin panel in a local development environment:
 
 ### Frontend:
 
-* [**Angular**](https://angular.io/) (**v19.2.15**) - Framework for the user interface.
+* [**Angular**](https://angular.io/) (**v19.2.14**) - Framework for the user interface.
+* **[TypeScript](https://www.typescriptlang.org/) (~5.7.2):** The base programming language that adds static typing.
 * [**Tailwind CSS**](https://tailwindcss.com/) - CSS framework for fast and responsive design.
 * [**DaisyUI**](https://daisyui.com/) - Tailwind CSS component plugin.
 * [**Ngx-Translate**](https://github.com/ngx-translate/core) - **Internationalization (i18n)** tool used to offer the application in Spanish (with the capability to add more languages).
