@@ -73,6 +73,8 @@ To access the store's admin panel in a local development environment:
 * [**Ngx-Translate**](https://github.com/ngx-translate/core) - **Internationalization (i18n)** tool used to offer the application in Spanish (with the capability to add more languages).
 * [**Angular Signals**](https://angular.dev/guide/signals) - For reactive state management of the cart and other UI parts.
 * [**@tailwindcss/line-clamp**](https://github.com/tailwindlabs/tailwindcss-line-clamp) - Plugin for truncating text.
+* **Swiper** - Library for carousel functionality.
+* **RxJS** - For reactive programming and asynchronous data handling.
 
 ### Backend:
 
